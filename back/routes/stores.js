@@ -18,6 +18,7 @@ storesRouter.post('/stores/new', async (req, res) => {
     const requestBody = req.body;
     requestBody._id = uuidv4();
 
+    // TODO: Fetch the MongoDB connection pool from Application storage
     const db = req.app.get("db");
 
     try {
@@ -60,5 +61,38 @@ storesRouter.get('/stores', async (req, res) => {
     res.send(results);
   }
 );
+
+storesRouter.get('/stores/:store_id', async (req, res) => {
+  const db = req.app.get("db");
+
+  const postId = req.params.postId;
+  let queryableId;
+
+  // In class, we created a conflicting state where one record used the `ObjectId` and another record used a
+  // string UUID. We can parse the user-supplied ID to determine if we should treat it as a string or an `ObjectId`.
+  try {
+    queryableId = new ObjectId(postId);
+  } catch (e) {
+    queryableId = postId;
+  }
+  try {
+    const post = await db.collection('posts').findOne({ _id: queryableId });
+    if (post === null) {
+      res.status(404);
+      res.json({
+        status: 404,
+        message: 'not found',
+      });
+      return;
+    }
+    // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
+    // Express' `Response` object
+    res.json(post);
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+    res.send('');
+  }
+});
 
 export { storesRouter };

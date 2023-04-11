@@ -4,13 +4,15 @@ import './Stores.css';
 export default function Stores() {
   const stores = useLoaderData();
   //console.log(stores);
+  //className="storeList"
   stores.forEach(store => console.log(store));
 
   return (
-    <div className="storeList">
-      {stores.map((store) => {
-        <p>Store: {store.name} </p>
-      })}
+    <div>
+      {stores.map((store) => (
+        <Link to={`${store._id}`}><h1>{store.name}</h1></Link>
+      ))}
+      
     </div>
   );
 }
