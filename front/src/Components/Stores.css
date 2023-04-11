@@ -1,0 +1,4 @@
+.storeList {
+    display: flex;
+    flex-wrap: wrap;
+}
