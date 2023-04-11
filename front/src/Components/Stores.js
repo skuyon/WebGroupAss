@@ -9,12 +9,13 @@ export default function Stores() {
   return (
     <div className="storeList">
       {stores.map((store) => {
-        <p key={store._id}>{store.name}</p>
+        <p>Store: {store.name} </p>
       })}
     </div>
   );
 }
 
+// await await
 async function fetchStores() {
   const response = await fetch(`http://localhost:3001/stores`);
   //console.log(response);

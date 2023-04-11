@@ -1,7 +1,6 @@
 import express, { json } from 'express';
 import cors from 'cors';
 import { connectMongodb } from './util.js';
-import { itemsRouter } from './routes/items.js';
 import { storesRouter } from './routes/stores.js';
 
 const port = 3001;
