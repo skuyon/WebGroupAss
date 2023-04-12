@@ -5,13 +5,15 @@ export default function Wrapper() {
   return (
     <>
       <header>
-      <link rel="stylesheet" href="./Wrapper.css" />
-        <div className="linkContainer">
-          <div className="aLink">
-            <Link to="/stores">View All Stores</Link>
-          </div>
-          <div className="aLink">
-            <Link to="/stores/new">Add New Store</Link>
+        <div class="navBar">
+          <link rel="stylesheet" href="./Wrapper.css" />
+          <div className="linkContainer">
+            <Link to="/stores" className="buttonLink">
+              <div className="button">View All Stores</div>
+            </Link>
+            <Link to="/stores/new" className="buttonLink">
+              <div className="button">Add New Store</div>
+            </Link>
           </div>
         </div>
       </header>
