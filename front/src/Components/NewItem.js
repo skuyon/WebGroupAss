@@ -1,20 +1,12 @@
 //import './NewItem.css';
 
-export default function NewItem({  params }){
+export default function NewItem({ params }){
     var name;
     var quantity;
     var price;
 
-    console.log("HEWUYUTSUIYTGEI");
-    console.log(params);
-
-    if (params === undefined) {
-        console.log("Null time");
-        return(
-            <div></div>
-        );
-    }
-
+    console.log(params)
+    
     const nameChange = (event) => {
         event.preventDefault();
         name = event.target.value;
@@ -35,7 +27,7 @@ export default function NewItem({  params }){
         <div>
             <link rel="stylesheet" href="./NewItem.css"/>
             <h1>New Item Form</h1>
-            <form id="itemForm" onSubmit={ () => handleSubmit({name, price, quantity}, params) }>
+            <form id="itemForm" onSubmit={ () => handleSubmit({name, price, quantity}) }>
                 <div id="storeNew">
                     Item Name: 
                     <input type="text" name="name" onInput={nameChange}></input>
@@ -55,9 +47,8 @@ export default function NewItem({  params }){
 
 }
 
-async function handleSubmit({ name = "filler", price = "filler", quantity = "filler"}, params) {
+async function handleSubmit({ name = "filler", price = "filler", quantity = "filler"}) {
     console.log("Lol what");
-    console.log(params);
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -65,8 +56,7 @@ async function handleSubmit({ name = "filler", price = "filler", quantity = "fil
     var raw = JSON.stringify({
         "name": name,
         "quantity": quantity,
-        "price": price//,
-        //"store_id": params.store_id
+        "price": price
     });
 
     var requestOptions = {
@@ -76,8 +66,8 @@ async function handleSubmit({ name = "filler", price = "filler", quantity = "fil
         redirect: 'follow'
     };
 
-    fetch(`http://localhost:3001/stores/${params.store_id}/items/new`, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+    // fetch(`http://localhost:3001/stores/${params.store_id}/items/new`, requestOptions)
+    //     .then(response => response.text())
+    //     .then(result => console.log(result))
+    //     .catch(error => console.log('error', error));
 }

@@ -12,12 +12,14 @@ export default function NewStore({}){
         <div>
             <link rel="stylesheet" href="./NewStore.css"/>
             <h1>New Store Form</h1>
-            <form id="todoForm" onSubmit={ () => handleSubmit({name}) }>
-                <div id="storeNew">
-                    Store Name: 
-                    <input type="text" name="name" onInput={nameChange}></input>
+            <form className="storeForm" onSubmit={ () => handleSubmit({name}) }>
+                <div className="storeNew">
+                    Store Name:
+                    <input type="text" name="name" onInput={nameChange}/>
+                    <br/>
+                    <button type="submit">Add</button>
                 </div>
-                <button type="submit">Add</button>
+                
             </form>
         </div>
     );

@@ -3,27 +3,24 @@ import './Stores.css';
 
 export default function Stores() {
   const stores = useLoaderData();
-  //console.log(stores);
-  //className="storeList"
-  //stores.forEach(store => console.log(store));
+  console.log("Stores.js");
 
   return (
     <div>
-      {stores.map((store) => (
-        <Link to={{
-          pathname: `/stores/${store._id}`//,
-          //state: store._id
-        }}><h1>{store.name}</h1></Link>
+      <link rel="stylesheet" href="./Stores.css"/>
+      <div id="storeList">
+        {stores.map((store) => (
+        <div className="storeCard" key={store._id}>
+          <Link to={`${store._id}`}><h2>{store.name}</h2></Link>
+        </div>
       ))}
-      
+      </div>
     </div>
   );
 }
 
-// await await
 async function fetchStores() {
   const response = await fetch(`http://localhost:3001/stores`);
-  //console.log(response);
   return await response;
 }
 

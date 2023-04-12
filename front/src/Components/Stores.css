@@ -1,4 +1,19 @@
 .storeList {
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;
+    flex-wrap: wrap;*/
+    /*max-width: 25%;*/
+    align-content: center;
+    display: block;
+}
+
+.storeCard {
+    background-color: antiquewhite;
+    border: 2px solid black;
+    margin: none;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    max-width: 25%;
 }
