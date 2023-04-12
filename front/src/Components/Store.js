@@ -12,7 +12,8 @@ export default function Store({ }) {
   const storeName = store[0].name;
   console.log("Store.js");
 
-  return (
+  /*Old return: 
+return (
     <div>
       <h1>{store[0].name}</h1>
       <Link to={{
@@ -23,6 +24,24 @@ export default function Store({ }) {
           pathname: `/stores/${storeID}/items/new`
         }}>Add New Item to {storeName}</Link>
 
+
+    </div>
+  );
+}
+
+  */
+  return (
+    <div>
+      <h1>{store[0].name}</h1>
+      <div className="linkContainer">
+      <Link to={{
+          pathname: `/stores/${storeID}/items`,
+        }}>View All Items in {storeName}</Link>
+        <br/>
+        <Link to={{
+          pathname: `/stores/${storeID}/items/new`
+        }}>Add New Item to {storeName}</Link>
+  </div>
 
     </div>
   );
