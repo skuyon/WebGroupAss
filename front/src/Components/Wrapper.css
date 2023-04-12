@@ -1,9 +1,14 @@
 .linkContainer {
-    text-align: center;
+    text-align: left;
     margin-top: 10px;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
 
+.navBar{
+    overflow: hidden;
+    background-color: #333;
+  }
 .aLink {
     margin-top: 10px;
     margin-left: 20%;
@@ -11,7 +16,28 @@
     margin-bottom: 10px;
 }
 
-Link{
+Link {
     color: black;
     text-decoration: none;
+}
+
+.buttonLink {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-color: black;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 5px;
+    border-inline: solid;
+    border-top: solid;
+    border-bottom: solid;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.buttonLink:hover {
+    background-color: #545454;
+    color: #ffffff;
+
 }
