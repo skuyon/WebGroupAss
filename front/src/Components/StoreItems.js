@@ -1,39 +1,30 @@
 import {Link, useLoaderData} from 'react-router-dom';
-import './StoreItems.css';
+import './Stores.css';
 
-// await await
-export async function fetchItems ({ params }) {
-    const response = await fetch(`http://localhost:3001/stores/${params.store_id}`);
-    console.log(params.store_id);
-    console.log(response);
-    return await response;
-}
-
-export default function Stores({ }) {
-  const items = useLoaderData();
-  //if(props.location.state.store_id) {
-    //console.log(props.location.state.store_id);
-  //}
-  //console.log("GOOD PLACE")
-  //const items = await fetch(`http://localhost:3001/stores/6435a3870fc383c83a904721`);
-  console.log(items);
-  //const storeID = this.props.location.state;
-  //console.log("6435a3870fc383c83a904721");
+export default function Stores() {
+  const stores = useLoaderData();
   //console.log(stores);
   //className="storeList"
-  //items.forEach(item => console.log(item));
+  stores.forEach(store => console.log(store));
 
   return (
     <div>
-      { items.map((item) => (
-        <div>
-           <h1>{item.name}</h1>
-            <h1>{item.price}</h1>
-            <h1>{item.quantity}</h1> 
-        </div>
-      ))} 
+      {stores.map((store) => (
+        <Link to={{
+          pathname: `/stores/${store._id}`,
+          state: store._id
+        }}><h1>{store.name}</h1></Link>
+      ))}
+      
     </div>
   );
 }
 
+// await await
+async function fetchItems() {
+  const response = await fetch(`http://localhost:3001/stores`);
+  //console.log(response);
+  return await response;
+}
 
+export { fetchItems };

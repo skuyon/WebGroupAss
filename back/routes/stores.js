@@ -12,7 +12,7 @@ const storesRouter = express.Router();
 
 itemsRouter.mergeParams = true;
 
-storesRouter.use("/:store_id/items", itemsRouter);
+storesRouter.use("/stores/:store_id/items", itemsRouter);
 
 storesRouter.post('/stores/new', async (req, res) => {
     const requestBody = req.body;
@@ -74,14 +74,9 @@ storesRouter.get('/stores/:store_id', async (req, res) => {
   // In class, we created a conflicting state where one record used the `ObjectId` and another record used a
   // string UUID. We can parse the user-supplied ID to determine if we should treat it as a string or an `ObjectId`.
 
-  // try {
-  //   queryableId = new ObjectId(storeId);
-  // } catch (e) {
-  //   queryableId = storeId;
-  // }
   try {
-    const items = await db.collection("Items").find({ store_id: storeId }).toArray();
-    if (items === null) {
+    const store = await db.collection("Stores").find({ _id: storeId }).toArray();
+    if (store === null) {
       res.status(404);
       res.json({
         status: 404,
@@ -91,14 +86,39 @@ storesRouter.get('/stores/:store_id', async (req, res) => {
     }
     // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
     // Express' `Response` object
-    console.log("Items: ");
-    console.log(items);
-    res.send(items);
+    console.log("Store: ");
+    console.log(store);
+    res.send(store);
   } catch (e) {
     console.log(e);
     res.status(500);
     res.send('');
   }
+  // try {
+  //   queryableId = new ObjectId(storeId);
+  // } catch (e) {
+  //   queryableId = storeId;
+  // }
+  // try {
+  //   const items = await db.collection("Items").find({ store_id: storeId }).toArray();
+  //   if (items === null) {
+  //     res.status(404);
+  //     res.json({
+  //       status: 404,
+  //       message: 'not found',
+  //     });
+  //     return;
+  //   }
+  //   // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
+  //   // Express' `Response` object
+  //   console.log("Items: ");
+  //   console.log(items);
+  //   res.send(items);
+  // } catch (e) {
+  //   console.log(e);
+  //   res.status(500);
+  //   res.send('');
+  // }
 });
 
 export { storesRouter };

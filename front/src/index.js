@@ -6,8 +6,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Wrapper from './Components/Wrapper';
 import Stores, { fetchStores } from './Components/Stores';
 import NewStore from './Components/NewStore';
-//, { NewStore }
-import StoreItems, { fetchItems } from './Components/StoreItems';
+import Store, { fetchStore } from './Components/Store';
+import StoreItems, { fetchStoreItems } from './Components/StoreItems.js';
+import NewItem, { newItem } from './Components/NewItem.js';
+import Item, { fetchItem } from './Components/Item.js';
 
 const router = createBrowserRouter([
   {
@@ -28,25 +30,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/stores/:store_id",
-        loader: fetchItems,
+        loader: fetchStore,
+        element: (
+            <Store />
+        ),
+      },
+      {
+        path: "/stores/:store_id/items",
+        loader: fetchStoreItems,
         element: (
             <StoreItems />
         ),
       },
-      // {
-      //   path: "/stores/:store_id/items/:item_id",
-      //   loader: getStoreItems,
-      //   element: (
-      //       <StoreItem />
-      //   ),
-      // },
-      // {
-      //   path: "/stores/:store_id/items/new",
-      //   loader: newStoreItem,
-      //   element: (
-      //       <NewStoreItem />
-      //   ),
-      // }
+      {
+        path: "/stores/:store_id/items/new",
+        loader: newItem,
+        element: (
+            <NewItem />
+        ),
+      },
+      {
+        path: "/stores/:store_id/items/:item_id",
+        loader: fetchItem,
+        element: (
+            <Item />
+        ),
+      },
     ],
   },
 ]);
