@@ -9,11 +9,11 @@ export async function fetchStoreItems ({ params }) {
 export default function StoreItems() {
   const items = useLoaderData();
   console.log("StoreItems.js");
-
-  return (
+/*old return: 
+return (
     <div>
       {items.map((item) => (
-        <div key={item._id}>
+        <div key={item._id}> 
           <Link to={`/stores/${item.store_id}/items/${item._id}`}>
             <h1>{item.name}</h1>
           </Link>
@@ -22,3 +22,17 @@ export default function StoreItems() {
     </div>
   );
 }
+*/
+  return (
+    <div>
+      {items.map((item) => (
+        <li key={item._id}> 
+          <Link to={`/stores/${item.store_id}/items/${item._id}`}>
+            <h1>{item.name}</h1>
+          </Link>
+        </li>
+      ))}  
+    </div>
+  );
+}
+
