@@ -1,5 +1,5 @@
 import {Link, useLoaderData} from 'react-router-dom';
-//import './Item.css';
+import './Item.css';
 
 export async function fetchItem ({ params }) {
   const response = await fetch(`http://localhost:3001/stores/${params.store_id}/items/${params.item_id}`);
@@ -12,9 +12,10 @@ export default function Item() {
 
   return (
     <div>
-      <p>Name: {item[0].name}</p>
-      <p>Price: {item[0].price}</p>
-      <p>Quantity: {item[0].quantity}</p>
+      <h1 class = "center">Item Details</h1>
+      <p><b>Name: </b>{item[0].name}</p>
+      <p><b>Price: </b>{item[0].price}</p>
+      <p><b>Quantity: </b>{item[0].quantity}</p>
     </div>
   );
 }
