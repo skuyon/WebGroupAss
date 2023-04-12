@@ -3,7 +3,7 @@ import {Link, useLoaderData} from 'react-router-dom';
 
 export async function fetchStoreItems ({ params }) {
     const response = await fetch(`http://localhost:3001/stores/${params.store_id}/items`);
-    console.log(params.store_id);
+    //console.log(params.store_id);
     console.log(response);
     return await response;
 }

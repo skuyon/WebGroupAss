@@ -5,14 +5,14 @@ export default function Stores() {
   const stores = useLoaderData();
   //console.log(stores);
   //className="storeList"
-  stores.forEach(store => console.log(store));
+  //stores.forEach(store => console.log(store));
 
   return (
     <div>
       {stores.map((store) => (
         <Link to={{
-          pathname: `/stores/${store._id}`,
-          state: store._id
+          pathname: `/stores/${store._id}`//,
+          //state: store._id
         }}><h1>{store.name}</h1></Link>
       ))}
       

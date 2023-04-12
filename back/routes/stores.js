@@ -15,6 +15,7 @@ itemsRouter.mergeParams = true;
 storesRouter.use("/stores/:store_id/items", itemsRouter);
 
 storesRouter.post('/stores/new', async (req, res) => {
+  console.log(req.body);
     const requestBody = req.body;
     requestBody._id = uuidv4();
 
@@ -68,7 +69,7 @@ storesRouter.get('/stores/:store_id', async (req, res) => {
   const db = req.app.get("db");
   //console.log("stores id got called!");
   const storeId = req.params.store_id;
-  console.log(storeId);
+  //console.log(storeId);
   //let queryableId;
 
   // In class, we created a conflicting state where one record used the `ObjectId` and another record used a
@@ -86,8 +87,8 @@ storesRouter.get('/stores/:store_id', async (req, res) => {
     }
     // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
     // Express' `Response` object
-    console.log("Store: ");
-    console.log(store);
+    //console.log("Store: ");
+    //console.log(store);
     res.send(store);
   } catch (e) {
     console.log(e);

@@ -2,6 +2,7 @@ import './NewStore.css';
 
 export default function NewStore({}){
     var name;
+    
     const nameChange = (event) => {
         name = event.target.value;
         console.log("name: " + name);
