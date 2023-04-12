@@ -44,12 +44,14 @@ storesRouter.get('/stores', async (req, res) => {
     // TODO: Fetch the MongoDB connection pool from Application storage
     const db = req.app.get("db");
 
-    // TODO: Retrieve all `class` documents from MongoDB using the `find` method
+    // TODO: Retrieve all `Store` documents from MongoDB using the `find` method
     // **NOTE**: You'll need to call `toArray` on the result to format it properly
     
     let results = await db.collection("Stores").find({}).toArray();
     
     if(results == null){
+      //if results weren't found
+      //uh oh
       res.status(404);
       res.json({
         status:404,
@@ -57,27 +59,29 @@ storesRouter.get('/stores', async (req, res) => {
       })
     }
 
-    console.log(results);
+    //console.log(results);
     res.send(results);
   }
 );
 
 storesRouter.get('/stores/:store_id', async (req, res) => {
   const db = req.app.get("db");
-
-  const postId = req.params.postId;
-  let queryableId;
+  //console.log("stores id got called!");
+  const storeId = req.params.store_id;
+  console.log(storeId);
+  //let queryableId;
 
   // In class, we created a conflicting state where one record used the `ObjectId` and another record used a
   // string UUID. We can parse the user-supplied ID to determine if we should treat it as a string or an `ObjectId`.
+
+  // try {
+  //   queryableId = new ObjectId(storeId);
+  // } catch (e) {
+  //   queryableId = storeId;
+  // }
   try {
-    queryableId = new ObjectId(postId);
-  } catch (e) {
-    queryableId = postId;
-  }
-  try {
-    const post = await db.collection('posts').findOne({ _id: queryableId });
-    if (post === null) {
+    const items = await db.collection("Items").find({ store_id: storeId }).toArray();
+    if (items === null) {
       res.status(404);
       res.json({
         status: 404,
@@ -87,7 +91,9 @@ storesRouter.get('/stores/:store_id', async (req, res) => {
     }
     // The MongoDB driver returns data as JavaScript objects, so we don't need to parse them to pass them to the `json` method of
     // Express' `Response` object
-    res.json(post);
+    console.log("Items: ");
+    console.log(items);
+    res.send(items);
   } catch (e) {
     console.log(e);
     res.status(500);

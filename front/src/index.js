@@ -7,7 +7,7 @@ import Wrapper from './Components/Wrapper';
 import Stores, { fetchStores } from './Components/Stores';
 import NewStore from './Components/NewStore';
 //, { NewStore }
-import StoreItems from './Components/StoreItems';
+import StoreItems, { fetchItems } from './Components/StoreItems';
 
 const router = createBrowserRouter([
   {
@@ -26,13 +26,13 @@ const router = createBrowserRouter([
             <NewStore />
         ),
       },
-      // {
-      //   path: "/stores/:store_id/items",
-      //   loader: getStoreItems,
-      //   element: (
-      //       <StoreItems />
-      //   ),
-      // },
+      {
+        path: "/stores/:store_id",
+        loader: fetchItems,
+        element: (
+            <StoreItems />
+        ),
+      },
       // {
       //   path: "/stores/:store_id/items/:item_id",
       //   loader: getStoreItems,
